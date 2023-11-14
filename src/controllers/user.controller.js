@@ -44,8 +44,9 @@ const loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
+        console.log(username);
         // Find the user by username
-        const user = await User.findOne({ Username: username });
+        const user = await User.findOne({ username });
 
         // Check if the user exists
         if (!user) {
@@ -63,7 +64,7 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({ userId: user._id }, config.jwtSecret, { expiresIn: '1h' });
 
         // Respond with the token and user details
-        res.json({ token, user: { _id: user._id, username: user.Username } });
+        res.json({ token, user: { _id: user._id, username: user.username } });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
