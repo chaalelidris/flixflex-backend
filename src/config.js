@@ -16,7 +16,9 @@ const config = {
         'test': process.env['DEV_ORIGIN'] ?? '*',
         'development': process.env['DEV_ORIGIN'] ?? '*',
         'production': process.env['PROD_ORIGIN'] ?? 'none'
-    }
+    },
+
+    jwtSecret: process.env['JWT_SECRET'] ?? "1234-1234-1234-1234"
 }
 
 export default config
