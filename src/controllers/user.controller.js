@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 
 /* import app config */
 import config from '../config';
+import passport from 'passport';
 
 const saltRounds = 10;
 
@@ -40,35 +41,25 @@ const registerUser = async (req, res) => {
     }
 };
 
-const loginUser = async (req, res) => {
-    const { username, password } = req.body;
+const loginUser = (req, res) => {
+    passport.authenticate('local', { session: false }, (error, user, info) => {
+        try {
 
-    try {
-        console.log(username);
-        // Find the user by username
-        const user = await User.findOne({ username });
+            if (error || !user) {
+                return res.status(401).json({
+                    message: info.message,
+                    user: user
+                });
+            }
+            // Generate a JWT token
+            const token = jwt.sign({ userId: user._id, username: user.username }, config.jwtSecret, { expiresIn: '1h' });
 
-        // Check if the user exists
-        if (!user) {
-            return res.status(401).json({ error: 'Invalid username or password' });
+            res.json({ token, user });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal Server Error' });
         }
-
-        // Compare the provided password with the hashed password in the database
-        const passwordMatch = await bcrypt.compare(password, user.password);
-
-        if (!passwordMatch) {
-            return res.status(401).json({ error: 'Invalid username or password' });
-        }
-
-        // Generate a JWT token
-        const token = jwt.sign({ userId: user._id }, config.jwtSecret, { expiresIn: '1h' });
-
-        // Respond with the token and user details
-        res.json({ token, user: { _id: user._id, username: user.username } });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+    })(req, res);
 };
 
 export {

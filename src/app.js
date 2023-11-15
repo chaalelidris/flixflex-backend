@@ -24,6 +24,10 @@ app.use(cors({
 app.use(helmet())
 app.use(morgan('dev')) //tiny
 
+// Initialize Passport
+import { passport } from "./middleware/passportAuthMiddleware"
+app.use(passport.initialize());
+
 // Apply routes before error handling
 app.use('/', root)
 app.use('/api/v1/users', userRoutes);
