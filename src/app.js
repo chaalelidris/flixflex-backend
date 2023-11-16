@@ -25,6 +25,7 @@ app.use(morgan('dev')) //tiny
 
 // Initialize Passport
 import { passport } from "./middleware/passportAuthMiddleware"
+import swagger from '../swagger';
 app.use(passport.initialize());
 
 // Apply routes before error handling
@@ -33,6 +34,8 @@ app.use('/api/v1/users', usersRoutes);
 
 app.use("/api/v1/flixflex", mooviesRoutes)
 
+// Serve Swagger documentation
+app.use('/api-docs', swagger.serve, swagger.setup);
 
 // Apply error handling last
 app.use(fourOhFour)

@@ -164,7 +164,7 @@ const searchMoviesAndSeries = async (req, res) => {
     }
 };
 
-const getMoviesDetails = async (req, res) => {
+const getMovieDetails = async (req, res) => {
     try {
         const { movieId } = req.params;
 
@@ -232,4 +232,4 @@ const getTrailer = async (req, res) => {
 
 
 
-export { getMovies, getSeries, getTopMovies, getTopSeries, searchMoviesAndSeries, getSerieDetails, getMoviesDetails, getTrailer };
+export { getMovies, getSeries, getTopMovies, getTopSeries, searchMoviesAndSeries, getSerieDetails, getMovieDetails, getTrailer };
