@@ -7,7 +7,7 @@ const getMovies = async (req, res) => {
     try {
         let pageNumber;
         let startIndex;
-        if (batch10 && batch10 === true) {
+        if (batch10 && batch10 == true) {
             if (page % 2 === 0) {
                 pageNumber = page / 2;
                 startIndex = 0;
