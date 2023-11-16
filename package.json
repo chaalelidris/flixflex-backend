@@ -1,6 +1,6 @@
 {
   "name": "flixf-lex-movies-app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "FlixFlex movies app",
   "author": "Idris Chaalel <chaalelidris8@gmail.com>",
   "license": "MIT-0",
@@ -19,6 +19,7 @@
     "npm": ">=8.0.0"
   },
   "dependencies": {
+    "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

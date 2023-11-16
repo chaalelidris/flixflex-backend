@@ -18,7 +18,8 @@ const config = {
         'production': process.env['PROD_ORIGIN'] ?? 'none'
     },
 
-    jwtSecret: process.env['JWT_SECRET'] ?? "1234-1234-1234-1234"
+    jwtSecret: process.env['JWT_SECRET'] ?? "1234-1234-1234-1234",
+    tmdbApiKey: process.env["TMDB_API_KEY"]
 }
 
 export default config

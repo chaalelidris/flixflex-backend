@@ -8,7 +8,8 @@ import config from './config';
 import errorHandler from './middleware/errorHandler';
 import fourOhFour from './middleware/fourOhFour';
 import root from './routes/root.routes';
-import userRoutes from './routes/user.routes';
+import usersRoutes from './routes/user.routes';
+import mooviesRoutes from './routes/movie.routes';
 
 const app = express()
 
@@ -16,11 +17,9 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-
 app.use(cors({
     origin: config.clientOrigins[config.nodeEnv]
 }))
-
 app.use(helmet())
 app.use(morgan('dev')) //tiny
 
@@ -29,8 +28,11 @@ import { passport } from "./middleware/passportAuthMiddleware"
 app.use(passport.initialize());
 
 // Apply routes before error handling
-app.use('/', root)
-app.use('/api/v1/users', userRoutes);
+app.use('/api/v1', root)
+app.use('/api/v1/users', usersRoutes);
+
+app.use("/api/v1/flixflex", mooviesRoutes)
+
 
 // Apply error handling last
 app.use(fourOhFour)

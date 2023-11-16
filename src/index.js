@@ -1,6 +1,6 @@
 import app from './app'
 import config from './config'
-import connectDB from "./services/connect"
+import connectDB from "./db/connect"
 
 try {
     connectDB(process.env.MONGODB_URI);
