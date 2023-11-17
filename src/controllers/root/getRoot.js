@@ -1,4 +1,3 @@
-import config from '../../config.js';
 
 /**
  * Health check endpoint
@@ -7,9 +6,9 @@ import config from '../../config.js';
  */
 const getRoot = (_req, res) => {
     res.status(200).json({
-        name: config.name,
-        description: config.description,
-        version: config.version
+        name: "Flix flex",
+        description: "Flix Flex Backend API",
+        version: "1.5.0"
     });
 }
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import config from '../config.js';
+
 
 const getMovies = async (req, res) => {
     const { page, batch10 } = req.query;
@@ -18,7 +18,7 @@ const getMovies = async (req, res) => {
                 language: 'en-US',
                 page: pageNumber || 1,
                 sort_by: 'popularity.desc',
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
             },
             headers: {
                 accept: 'application/json',
@@ -66,7 +66,7 @@ const getSeries = async (req, res) => {
                 language: 'en-US',
                 page: pageNumber || 1,
                 sort_by: 'popularity.desc',
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
             },
             headers: {
                 accept: 'application/json',
@@ -105,7 +105,7 @@ const getTopMovies = async (req, res) => {
             params: {
                 language: 'en-US',
                 page: page || 1, // Use the requested page or default to 1
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
             },
             headers: {
                 accept: 'application/json',
@@ -135,7 +135,7 @@ const getTopSeries = async (req, res) => {
             params: {
                 language: 'en-US',
                 page: page || 1,
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
             },
             headers: {
                 accept: 'application/json',
@@ -164,7 +164,7 @@ const searchMoviesAndSeries = async (req, res) => {
         // Call TMDB API for search
         const tmdbResponse = await axios.get('https://api.themoviedb.org/3/search/multi', {
             params: {
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
                 query,
             },
         });
@@ -190,7 +190,7 @@ const getMovieDetails = async (req, res) => {
         // Call TMDB API for details
         const tmdbResponse = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
             params: {
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
             },
         });
 
@@ -209,7 +209,7 @@ const getSerieDetails = async (req, res) => {
         // Call TMDB API for details
         const tmdbResponse = await axios.get(`https://api.themoviedb.org/3/tv/${serieId}`, {
             params: {
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
             },
         });
 
@@ -227,7 +227,7 @@ const getMovieTrailer = async (req, res) => {
         // Call TMDB API for videos
         const tmdbResponse = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
             params: {
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
             },
         });
 
@@ -254,7 +254,7 @@ const getSerieTrailer = async (req, res) => {
         // Call TMDB API for videos
         const tmdbResponse = await axios.get(`https://api.themoviedb.org/3/tv/${serieId}/videos`, {
             params: {
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
             },
         });
 

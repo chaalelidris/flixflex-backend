@@ -1,4 +1,4 @@
-import config from '../config.js';
+
 
 /**
  * 500 response & log when errors are raised.
@@ -14,7 +14,7 @@ import config from '../config.js';
 const errorHandler = (err, _req, res, _next) => {
     console.error(err);
     return res.status(500).json({
-        message: config.nodeEnv === 'production' ?
+        message: process.env['NODE_ENV'] ?? 'development' === 'production' ?
             'unknown error' :
             `${err}`
     });

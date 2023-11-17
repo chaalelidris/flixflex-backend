@@ -1,12 +1,12 @@
 import axios from 'axios';
 import Favorite from '../models/favorite-model.js';
-import config from '../config.js';
+
 
 const addToFavorites = async (req, res) => {
     try {
         const { user } = req;
         const { itemId, itemType } = req.body;
-        const tmdbApiKey = config.tmdbApiKey;
+        const tmdbApiKey = process.env["TMDB_API_KEY"];
 
         const validItemTypes = ["movie", "tv"];
         if (!validItemTypes.includes(itemType)) {

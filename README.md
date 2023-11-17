@@ -49,7 +49,6 @@ The project follows a modular and organized structure to enhance readability, ma
   - **`/services`**: Contains business logic or services used by controllers.
   - **`/tests`**: Houses test files for automated testing.
   - **`/app.js`**: The main application file responsible for setting up the server and middleware.
-  - **`/config.js`**: Stores configuration settings for the application.
   - **`/index.js`**: The entry point file that initializes the application.
 
 - **Other Files and Directories:**
@@ -96,7 +95,7 @@ The project follows a modular and organized structure to enhance readability, ma
    ```bash
    PORT=3000
    NODE_ENV=development
-   DEV_ORIGIN=*
+   ORIGIN=*
    PROD_ORIGIN=https://mysite.com
 
    MONGODB_URI=mongodb://localhost:27017/flixflex

@@ -8,7 +8,7 @@ async function getMovieDetails(movieId) {
         const response = await axios.get(url, {
             params: {
                 language: 'en-US',
-                api_key: config.tmdbApiKey,
+                api_key: process.env["TMDB_API_KEY"],
             },
             headers: {
                 accept: 'application/json',

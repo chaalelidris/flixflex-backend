@@ -5,7 +5,6 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import * as dotenv from "dotenv"
 
-import config from './config.js';
 import errorHandler from './middleware/errorHandler.js';
 import fourOhFour from './middleware/fourOhFour.js';
 import root from './routes/root.routes.js';
@@ -17,11 +16,12 @@ const app = express()
 
 // Apply most middleware first
 dotenv.config()
+console.log(process.env["TMDB_API_KEY"]);
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(cors({
-    origin: config.clientOrigins[config.nodeEnv]
+    origin: process.env['ORIGIN']
 }))
 app.use(helmet())
 app.use(morgan('dev')) //tiny

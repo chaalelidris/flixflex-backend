@@ -2,7 +2,7 @@ import passport from 'passport';
 import passportLocal from 'passport-local';
 import passportJwt from 'passport-jwt';
 import bcrypt from 'bcrypt';
-import config from '../config.js';
+
 import User from '../models/user-model.js';
 
 // Passport Local Strategy For login
@@ -30,7 +30,7 @@ const JwtStrategy = passportJwt.Strategy;
 const ExtractJwt = passportJwt.ExtractJwt;
 const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.jwtSecret,
+    secretOrKey: process.env['JWT_SECRET'] ?? "1234-1234-1234-1234",
 };
 passport.use(
     new JwtStrategy(jwtOptions, async (jwtPayload, done) => {

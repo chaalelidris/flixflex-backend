@@ -4,8 +4,6 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
 import User from '../models/user-model.js';
-/* import app config */
-import config from '../config.js';
 
 const saltRounds = 10;
 
@@ -31,7 +29,7 @@ const registerUser = async (req, res) => {
         const newUser = await User.create({ username, password: hashedPassword });
 
         // Generate a JWT token
-        const token = jwt.sign({ userId: newUser._id }, config.jwtSecret, { expiresIn: '24h' });
+        const token = jwt.sign({ userId: newUser._id }, process.env['JWT_SECRET'] ?? "1234-1234-1234-1234", { expiresIn: '24h' });
 
         // Respond with the token and user details
         res.status(201).json({ token, user: { _id: newUser._id, username: newUser.username } });
@@ -52,7 +50,7 @@ const loginUser = (req, res) => {
                 });
             }
             // Generate a JWT token
-            const token = jwt.sign({ userId: user._id, username: user.username }, config.jwtSecret, { expiresIn: '1h' });
+            const token = jwt.sign({ userId: user._id, username: user.username }, process.env['JWT_SECRET'] ?? "1234-1234-1234-1234", { expiresIn: '1h' });
 
             res.json({ token, user });
         } catch (error) {

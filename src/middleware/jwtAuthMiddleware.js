@@ -1,6 +1,6 @@
 
 import jwt from 'jsonwebtoken';
-import config from '../config.js';
+
 
 const authMiddleware = (req, res, next) => {
     // Get the token from the request headers
@@ -13,7 +13,7 @@ const authMiddleware = (req, res, next) => {
 
     try {
         // Verify the token
-        const decodedToken = jwt.verify(token, config.jwtSecret);
+        const decodedToken = jwt.verify(token, process.env['JWT_SECRET'] ?? "1234-1234-1234-1234");
 
         // Attach the decoded user information to the request object
         req.user = decodedToken;

@@ -1,12 +1,10 @@
 import app from './app.js';
-import config from './config.js'
 import connectDB from "./db/connect.js"
 
 try {
     connectDB(process.env.MONGODB_URI);
-    app.listen(config.port, () => {
-        console.log(`🚀 ${config.name} ${config.version} 🚀`)
-        console.log(`🚀 Listening on ${config.port} with NODE_ENV=${config.nodeEnv} 🚀 at http://localhost:${config.port}`)
+    app.listen(process.env['PORT'] ?? 3000, () => {
+        console.log(`🚀 Listening on ${process.env['PORT'] ?? 3000} with NODE_ENV=${process.env['NODE_ENV'] ?? 'development'} 🚀 at http://localhost:${process.env['PORT'] ?? 3000}`)
     })
 } catch (error) {
     console.log(error);
