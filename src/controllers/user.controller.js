@@ -34,7 +34,7 @@ const registerUser = async (req, res) => {
         const token = jwt.sign({ userId: newUser._id }, config.jwtSecret, { expiresIn: '24h' });
 
         // Respond with the token and user details
-        res.status(201).json({ token, user: { _id: newUser._id, username: newUser.username }, message: "Registered successfully" });
+        res.status(201).json({ token, user: { _id: newUser._id, username: newUser.username } });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -54,7 +54,7 @@ const loginUser = (req, res) => {
             // Generate a JWT token
             const token = jwt.sign({ userId: user._id, username: user.username }, config.jwtSecret, { expiresIn: '1h' });
 
-            res.json({ token, user, message: "Logged in successfully" });
+            res.json({ token, user });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });
