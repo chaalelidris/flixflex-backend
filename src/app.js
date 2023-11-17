@@ -16,7 +16,6 @@ const app = express()
 
 // Apply most middleware first
 dotenv.config()
-console.log(process.env["TMDB_API_KEY"]);
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
