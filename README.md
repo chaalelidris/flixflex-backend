@@ -34,6 +34,38 @@ FlixFlex is a web application that allows users to explore movies and series, ad
 - Axios (HTTP client for API requests)
 - TMDB API (as a data source)
 
+## Project structure
+
+The project follows a modular and organized structure to enhance readability, maintainability, and scalability. Here's an overview of the main directories and files:
+
+- **`/src`**: The source code directory.
+
+  - **`/controllers`**: Contains controllers responsible for handling HTTP requests and responses.
+  - **`/db`**: Includes database-related files and configurations.
+  - **`/middleware`**: Holds middleware functions used in request processing.
+  - **`/models`**: Contains data models representing entities in the application.
+  - **`/routes`**: Defines API routes and connects them to appropriate controllers.
+  - **`/services`**: Contains business logic or services used by controllers.
+  - **`/tests`**: Houses test files for automated testing.
+  - **`/app.js`**: The main application file responsible for setting up the server and middleware.
+  - **`/config.js`**: Stores configuration settings for the application.
+  - **`/index.js`**: The entry point file that initializes the application.
+
+- **Other Files and Directories:**
+  - **`.babelrc`**: Babel configuration for transpiling modern JavaScript code.
+  - **`.dockerignore`**: Specifies files and directories to be excluded when creating Docker images.
+  - **`.env`**: Configuration file for environment variables. (Note: Should not be committed to version control)
+  - **`.env.sample`**: Sample environment file with placeholders for configuration variables.
+  - **`.eslintrc.json`**: ESLint configuration for linting JavaScript code.
+  - **`.gitignore`**: Specifies files and directories to be ignored by Git.
+  - **`Dockerfile`**: Configuration for building a Docker image of the application.
+  - **`jest.config.json`**: Jest configuration for JavaScript testing.
+  - **`jsconfig.json`**: Configuration file for JavaScript language features in VSCode.
+  - **`package-lock.json`**: Auto-generated file specifying the exact versions of npm packages used.
+  - **`package.json`**: Project metadata and configuration, including dependencies.
+  - **`README.md`**: Documentation file providing an overview of the project.
+    The structure aims to promote clean separation of concerns and facilitate ease of navigation within the project.
+
 ## Getting Started
 
 ### Prerequisites
