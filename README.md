@@ -95,9 +95,12 @@ You should copy `.env.sample` to `.env` and then:
 
 `npm start` - Runs the server.
 
-## Endpoints:
-
 # API Endpoints
+
+## Swagger Documentation
+
+Explore the API documentation using Swagger Available at [FlixFlex swagger documentation](https://app.swaggerhub.com/apis-docs/CHAALELIDRIS8/flixflex/1.0.0)
+(in review: please report me if there is issues)
 
 ## User Authentication
 
@@ -130,3 +133,39 @@ You should copy `.env.sample` to `.env` and then:
 ## Authentication
 
 User authentication is handled using Passport.js with JSON Web Tokens (JWT). Users need to register and log in to access certain features.
+
+## Todos
+
+Here is a list of tasks and improvements that can be addressed for the FlixFlex backend API:
+
+&#x2610; **Enhance Error Handling:**
+
+- Improve error handling throughout the application by providing more meaningful error messages.
+- Implement a centralized error handling middleware for consistency.
+
+&#x2610; **Input Validation:**
+
+- Strengthen input validation to ensure that all incoming requests are properly validated.
+- Implement validation middleware to centralize validation logic.
+
+&#x2610; **Testing:**
+
+- Increase test coverage by adding unit tests, integration tests, and end-to-end tests where applicable.
+- Integrate continuous integration (CI) tools to automate testing on code changes.
+
+&#x2610; **Documentation:**
+
+- Expand API documentation to include more detailed information about each endpoint, request/response formats, and authentication mechanisms.
+- Keep Swagger/OpenAPI documentation up-to-date with the latest changes to the API.
+
+&#x2610; **Optimization:**
+
+- Identify and optimize any performance bottlenecks in the code.
+- Consider caching strategies for frequently requested data.
+
+&#x2610; **Enhance User Authentication:**
+
+&#x2610; **Monitoring:**
+
+- Set up monitoring tools to track the health and performance of the API in real-time.
+- Configure alerts for critical issues or unusual behavior.
