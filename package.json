@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "babel-node src/index.js",
+    "start": "npx babel-node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "jest --verbose",
     "test:watch": "jest --watch",
