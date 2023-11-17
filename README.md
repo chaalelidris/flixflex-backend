@@ -167,7 +167,58 @@ Explore the API documentation using Swagger Available at [FlixFlex swagger docum
 
 User authentication is handled using Passport.js with JSON Web Tokens (JWT). Users need to register and log in to access certain features.
 
-## Todos
+# Usage Examples
+
+## 1. Register a New User
+
+### Request
+
+```http
+POST /api/v1/users/register
+Content-Type: application/json
+
+{
+  "username": "example_user",
+  "password": "securepassword123"
+}
+```
+
+### Response
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTU3NzlkNThiMzE0ZDY2MDEyOTE2NzIiLCJpYXQiOjE3MDAyMzE2MzcsImV4cCI6MTcwMDMxODAzN30.AYkYEdq9kDTnYP0A50kmZS2SIs3jUGkAFVcqSGGDats",
+  "user": {
+    "_id": "655779d58b314d6601291672",
+    "username": "idris39"
+  }
+}
+```
+
+## 4. Add Item to Favorites
+
+### Request
+
+```http
+POST /api/v1/users/favorites
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBmN2MwMmE4YjVhMzgwMDE1YmQ4YzMxIiwiaWF0IjoxNjI2NjgxMjQyLCJleHAiOjE2MjY2ODM4NDJ9.IyL-5vC3IOCVI5hO7_VbRzQUksXdg2n_wvyz2ZZd11A
+
+{
+  "itemId": "12345",
+  "itemType": "movie"
+}
+```
+
+### Response
+
+```json
+{
+  "message": "Added to favorites successfully"
+}
+```
+
+# Todos
 
 Here is a list of tasks and improvements that can be addressed for the FlixFlex backend API:
 
@@ -202,3 +253,15 @@ Here is a list of tasks and improvements that can be addressed for the FlixFlex 
 
 - Set up monitoring tools to track the health and performance of the API in real-time.
 - Configure alerts for critical issues or unusual behavior.
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
