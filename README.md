@@ -195,7 +195,7 @@ Content-Type: application/json
 }
 ```
 
-## 4. Add Item to Favorites
+## 2. Add Item to Favorites
 
 ### Request
 
