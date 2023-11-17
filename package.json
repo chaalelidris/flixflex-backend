@@ -30,13 +30,13 @@
     "morgan": "^1.10.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0"
-  },
-  "devDependencies": {
+    "passport-local": "^1.0.0",
     "@babel/cli": "^7.22.10",
     "@babel/core": "^7.22.11",
     "@babel/node": "^7.22.10",
-    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-env": "^7.22.10"
+  },
+  "devDependencies": {
     "@types/jest": "^29.5.4",
     "babel-watch": "^7.8.1",
     "cross-env": "^7.0.3",
