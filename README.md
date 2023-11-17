@@ -253,15 +253,3 @@ Here is a list of tasks and improvements that can be addressed for the FlixFlex 
 
 - Set up monitoring tools to track the health and performance of the API in real-time.
 - Configure alerts for critical issues or unusual behavior.
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
