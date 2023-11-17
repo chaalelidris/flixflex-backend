@@ -1,6 +1,6 @@
 import axios from 'axios';
-import Favorite from '../models/favorite-model';
-import config from '../config';
+import Favorite from '../models/favorite-model.js';
+import config from '../config.js';
 
 const addToFavorites = async (req, res) => {
     try {

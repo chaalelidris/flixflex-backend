@@ -1,4 +1,4 @@
-import config from '../config';
+import config from '../config.js';
 
 /**
  * 500 response & log when errors are raised.

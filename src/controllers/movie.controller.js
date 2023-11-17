@@ -1,5 +1,5 @@
 import axios from 'axios';
-import config from '../config';
+import config from '../config.js';
 
 const getMovies = async (req, res) => {
     const { page, batch10 } = req.query;

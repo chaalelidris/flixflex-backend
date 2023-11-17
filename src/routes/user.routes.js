@@ -1,6 +1,6 @@
 import express from "express"
 import { registerUser, loginUser } from "../controllers/user.controller.js";
-import { addToFavorites, removeFromFavorites, getFavorites } from "../controllers/favorite.controller";
+import { addToFavorites, removeFromFavorites, getFavorites } from "../controllers/favorite.controller.js";
 import passport from "passport";
 
 

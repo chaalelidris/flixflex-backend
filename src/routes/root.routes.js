@@ -1,8 +1,8 @@
 import express from 'express';
 import passport from 'passport';
 /* controllers */
-import getRoot from '../controllers/root/getRoot';
-import postRoot from '../controllers/root/postRoot';
+import getRoot from '../controllers/root/getRoot.js';
+import postRoot from '../controllers/root/postRoot.js';
 
 const root = express.Router()
 

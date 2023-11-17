@@ -1,11 +1,11 @@
 // controllers/userController.js
-import User from '../models/user-model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
-/* import app config */
-import config from '../config';
 import passport from 'passport';
+
+import User from '../models/user-model.js';
+/* import app config */
+import config from '../config.js';
 
 const saltRounds = 10;
 

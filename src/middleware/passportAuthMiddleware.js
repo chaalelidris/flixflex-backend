@@ -1,9 +1,9 @@
 import passport from 'passport';
 import passportLocal from 'passport-local';
 import passportJwt from 'passport-jwt';
-import config from '../config';
-import User from '../models/user-model';
 import bcrypt from 'bcrypt';
+import config from '../config.js';
+import User from '../models/user-model.js';
 
 // Passport Local Strategy For login
 const LocalStrategy = passportLocal.Strategy;
