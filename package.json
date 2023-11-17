@@ -7,7 +7,7 @@
   "private": false,
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src -d dist --copy-files",
+    "build": "npx babel src -d dist --copy-files",
     "start": "cross-env NODE_ENV=production dotenv -e .env node dist/index.js",
     "dev": "cross-env NODE_ENV=development dotenv -e .env babel-watch -w package.json -w src src/index.js",
     "test": "cross-env NODE_ENV=test dotenv -e .env jest --verbose",
