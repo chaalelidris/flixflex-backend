@@ -62,8 +62,13 @@ FlixFlex is a web application that allows users to explore movies and series, ad
 
    ```bash
    PORT=3000
+   NODE_ENV=development
+   DEV_ORIGIN=*
+   PROD_ORIGIN=https://mysite.com
+
    MONGODB_URI=mongodb://localhost:27017/flixflex
-   TMDB_API_KEY=your-tmdb-api-key
+   JWT_SECRET=your_secret_key_for_jwt
+   TMDB_API_KEY=your_tmdb_api_key
    ```
 
    Replace `your-tmdb-api-key` with your TMDB API key.
@@ -103,9 +108,10 @@ You should copy `.env.sample` to `.env` and then:
 
 - **GET** `/api/v1/flixflex/movies`: Get all movies.
 - **GET** `/api/v1/flixflex/movies?page=2&batch10=true`: Get movies in batches of 10.
-- **GET** `/api/v1/flixflex/movies/top`: Get top movies.
+- **GET** `/api/v1/flixflex/movies/top`: Get top5 movies.
 - **GET** `/api/v1/flixflex/series`: Get all series.
-- **GET** `/api/v1/flixflex/series/top`: Get top series.
+- **GET** `/api/v1/flixflex/series?page=2&batch10=true`: Get series in batches of 10.
+- **GET** `/api/v1/flixflex/series/top`: Get top5 series.
 
 ## Favorites
 
