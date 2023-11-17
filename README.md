@@ -127,6 +127,10 @@ You should copy `.env.sample` to `.env` and then:
 
 # API Endpoints
 
+## Deployment
+
+The FlixFlex Backend API is deployed and accessible at: [https://flixflex-evyj.onrender.com/api/v1](https://flixflex-evyj.onrender.com/api/v1)
+
 ## Swagger Documentation
 
 Explore the API documentation using Swagger Available at [FlixFlex swagger documentation](https://app.swaggerhub.com/apis-docs/CHAALELIDRIS8/flixflex/1.0.0)
