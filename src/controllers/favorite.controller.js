@@ -6,6 +6,12 @@ const addToFavorites = async (req, res) => {
     try {
         const { user } = req;
         const { itemId, itemType } = req.body;
+        const tmdbApiKey = config.tmdbApiKey;
+
+        const validItemTypes = ["movie", "tv"];
+        if (!validItemTypes.includes(itemType)) {
+            return res.status(400).json({ error: 'Invalid itemType; must be movie or tv' });
+        }
 
         // Check if the movie/series already exists in favorites
         const existingFavorite = await Favorite.findOne({ userId: user._id, itemId });
@@ -14,11 +20,15 @@ const addToFavorites = async (req, res) => {
         }
 
         // Check if movie/series exists on TMDB
-        const tmdbResponse = await axios.get(`https://api.themoviedb.org/3/${itemType}/${itemId}`, {
-            params: { api_key: config.tmdbApiKey },
-        });
-        if (!tmdbResponse.data) {
-            return res.status(404).json({ error: `${itemType} not found on TMDB` });
+        try {
+            await axios.get(`https://api.themoviedb.org/3/${itemType}/${itemId}`, {
+                params: { api_key: tmdbApiKey },
+            });
+        } catch (error) {
+            if (error.response && error.response.status === 404) {
+                return res.status(404).json({ error: `Item not found on TMDB` });
+            }
+            throw error; // Re-throw other errors
         }
 
         // Add to favorites
@@ -30,6 +40,7 @@ const addToFavorites = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
 
 const removeFromFavorites = async (req, res) => {
     try {

@@ -7,12 +7,12 @@ const favoriteSchema = new mongoose.Schema({
         required: true,
     },
     itemId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true,
     },
     itemType: {
         type: String,
-        enum: ['movie', 'series'],
+        enum: ['movie', 'tv'],
         required: true,
     },
 });

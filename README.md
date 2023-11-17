@@ -121,9 +121,11 @@ You should copy `.env.sample` to `.env` and then:
 
 ## Search, Details, and Trailer
 
-- **GET** `/search/multi/:query`: Search for movies and series.
-- **GET** `/details/:itemType/:itemId`: Get details of a movie or series.
-- **GET** `/trailer/:itemType/:itemId`: Get the trailer of a movie or series.
+- **GET** `/api/v1/flixflex/search/multi?query=query`: Search for movies and series.
+- **GET** `/api/v1/flixflex/movies/:movieId`: Get details of a movie or series.
+- **GET** `/api/v1/flixflex/movies/:movieId/trailer`: Get the trailer of a movie or series.
+- **GET** `/api/v1/flixflex/series/:serieId`: Get details of a movie or series.
+- **GET** `/api/v1/flixflex/series/:serieId/trailer`: Get the trailer of a movie or series.
 
 ## Authentication
 
