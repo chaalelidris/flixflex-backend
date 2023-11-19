@@ -12,6 +12,8 @@ FlixFlex is a web application that allows users to explore movies and series, ad
   - [Installation](#installation)
   - [Configuration](#configuration)
 - [API Endpoints](#api-endpoints)
+  - [Deployment origin](#deployment-origin)
+  - [Swagger documentatin & test](#swagger-documentatin-&-test)
 - [Authentication](#authentication)
 - [Usage Examples](#usage-examples)
 - [Contributing](#contributing)
@@ -127,13 +129,13 @@ You should copy `.env.sample` to `.env` and then:
 
 # API Endpoints
 
-## Deployment
+## Deployment origin
 
 The FlixFlex Backend API is deployed and accessible at: [https://flixflex-evyj.onrender.com/api/v1](https://flixflex-evyj.onrender.com/api/v1)
 
-## Swagger Documentation
+## Swagger documentatin & test
 
-Explore the API documentation using Swagger Available at [FlixFlex swagger documentation](https://app.swaggerhub.com/apis-docs/CHAALELIDRIS8/flixflex/1.0.0)
+Explore the API documentation using Swagger Available at [https://app.swaggerhub.com/apis-docs/CHAALELIDRIS8/flixflex/1.0.0](https://app.swaggerhub.com/apis-docs/CHAALELIDRIS8/flixflex/1.0.0)
 (in review: please report me if there is issues)
 
 ## User Authentication
