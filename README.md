@@ -13,7 +13,7 @@ FlixFlex is a web application that allows users to explore movies and series, ad
   - [Configuration](#configuration)
 - [API Endpoints](#api-endpoints)
   - [Deployment origin](#deployment-origin)
-  - [Swagger documentatin & test](#swagger-documentatin-&-test)
+  - [Swagger documentatin & test](#swagger-documentatin--test)
 - [Authentication](#authentication)
 - [Usage Examples](#usage-examples)
 - [Contributing](#contributing)
