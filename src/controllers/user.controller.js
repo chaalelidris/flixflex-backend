@@ -1,64 +1,61 @@
 // controllers/userController.js
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
 import User from '../models/user-model.js';
+import { matchedData } from 'express-validator';
+import { generateJwtToken } from '../services/authService.js';
 
 const saltRounds = 10;
 
 const registerUser = async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password } = matchedData(req);
 
     try {
-        // Check for null or undefined username
-        if (!username) {
-            return res.status(400).json({ error: 'Username is required' });
-        }
-
-        // Check if the username already exists
         const existingUser = await User.findOne({ username });
         if (existingUser) {
-            return res.status(400).json({ error: 'Username already exists' });
+            return res.status(400).json({ success: false, error: 'Username already exists' });
         }
 
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        const hashedPassword = await bcrypt.hash(password, saltRounds); // Hash the password
 
-        // Create a new user
-        const newUser = await User.create({ username, password: hashedPassword });
+        const newUser = await User.create({ username, password: hashedPassword }); // Create a new user
 
-        // Generate a JWT token
-        const token = jwt.sign({ userId: newUser._id }, process.env['JWT_SECRET'] ?? "1234-1234-1234-1234", { expiresIn: '24h' });
+
+        const token = generateJwtToken(newUser); // Generate a JWT token
 
         // Respond with the token and user details
-        res.status(201).json({ token, user: { _id: newUser._id, username: newUser.username } });
+        res.status(201).json({ success: true, token, user: { _id: newUser._id, username: newUser.username } });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error('User registration error:', error.message);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 };
 
+
 const loginUser = (req, res) => {
     passport.authenticate('local', { session: false }, (error, user, info) => {
+        if (error) {
+            console.error('Passport authentication error:', error);
+            return res.status(401).json({ success: false, error: 'Internal Server Error' });
+        }
+
+        if (!user) {
+            const errorMessage = info && info.message ? info.message : 'Authentication failed';
+            return res.status(401).json({ success: false, error: errorMessage });
+        }
+
         try {
-
-            if (error || !user) {
-                return res.status(401).json({
-                    message: info.message,
-                    user: user
-                });
-            }
-            // Generate a JWT token
-            const token = jwt.sign({ userId: user._id, username: user.username }, process.env['JWT_SECRET'] ?? "1234-1234-1234-1234", { expiresIn: '1h' });
-
-            res.json({ token, user });
+            const token = generateJwtToken(user);
+            const responseData = { success: true, token, user: { _id: user._id, username: user.username } };
+            res.json(responseData);
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            console.error('User login error:', error);
+            return res.status(401).json({ success: false, error: 'Internal Server Error' });
         }
     })(req, res);
 };
+
 
 export {
     loginUser,

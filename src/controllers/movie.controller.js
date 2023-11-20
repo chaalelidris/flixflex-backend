@@ -25,10 +25,6 @@ const getMovies = async (req, res) => {
             },
         });
 
-        // Check if the response exists
-        if (!response || !response.data) {
-            return res.status(500).json({ error: 'Invalid response from TMDB API' });
-        }
 
         let paginatedMovies;
         if (page && batch10 && batch10 === "true") {
@@ -44,8 +40,16 @@ const getMovies = async (req, res) => {
 
         res.json(paginatedMovies);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.response) {
+            console.error('TMDB API Error | getMovies:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ error: error.response.data.status_message });
+        } else if (error.request) {
+            console.error('No response received from TMDB API | getMovies');
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            console.error('Error during TMDB API request setup | getMovies:', error.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 };
 
@@ -92,8 +96,16 @@ const getSeries = async (req, res) => {
 
         res.json(paginatedMovies);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.response) {
+            console.error('TMDB API Error | getSeries:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ error: error.response.data.status_message });
+        } else if (error.request) {
+            console.error('No response received from TMDB API | getSeries');
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            console.error('Error during TMDB API request setup | getSeries:', error.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 };
 
@@ -122,8 +134,16 @@ const getTopMovies = async (req, res) => {
 
         res.json(topMovies);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.response) {
+            console.error('TMDB API Error | getTopMovies:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ error: error.response.data.status_message });
+        } else if (error.request) {
+            console.error('No response received from TMDB API | getTopMovies');
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            console.error('Error during TMDB API request setup | getTopMovies:', error.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 };
 
@@ -152,8 +172,16 @@ const getTopSeries = async (req, res) => {
 
         res.json(topSeries);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.response) {
+            console.error('TMDB API Error | getTopSeries:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ error: error.response.data.status_message });
+        } else if (error.request) {
+            console.error('No response received from TMDB API | getTopSeries');
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            console.error('Error getTopSeries:', error.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 };
 
@@ -178,8 +206,16 @@ const searchMoviesAndSeries = async (req, res) => {
 
         res.json(results);
     } catch (error) {
-        console.error('Error searching movies and series:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.response) {
+            console.error('TMDB API Error:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ error: error.response.data.status_message });
+        } else if (error.request) {
+            console.error('No response received from TMDB API');
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            console.error('Error searchMoviesAndSeries:', error.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 };
 
@@ -197,8 +233,16 @@ const getMovieDetails = async (req, res) => {
 
         res.json(tmdbResponse.data);
     } catch (error) {
-        console.error('Error getting details:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.response) {
+            console.error('TMDB API Error:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ error: error.response.data.status_message });
+        } else if (error.request) {
+            console.error('No response received from TMDB API');
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            console.error('Error getMovieDetails:', error.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 };
 
@@ -215,8 +259,16 @@ const getSerieDetails = async (req, res) => {
 
         res.json(tmdbResponse.data);
     } catch (error) {
-        console.error('Error getting details:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.response) {
+            console.error('TMDB API Error:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ error: error.response.data.status_message });
+        } else if (error.request) {
+            console.error('No response received from TMDB API');
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            console.error('Error getSerieDetails:', error.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 };
 
@@ -231,6 +283,10 @@ const getMovieTrailer = async (req, res) => {
             },
         });
 
+        if (!tmdbResponse.data || !tmdbResponse.data.results) {
+            throw new Error('Invalid response from TMDB API');
+        }
+
         // Find the first trailer key, assuming it's a YouTube video
         const trailerKey = tmdbResponse.data.results.find(video => video.type === 'Trailer')?.key;
 
@@ -243,10 +299,19 @@ const getMovieTrailer = async (req, res) => {
 
         res.json({ trailerUrl });
     } catch (error) {
-        console.error('Error getting trailer:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.response) {
+            console.error('TMDB API Error:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ error: error.response.data.status_message });
+        } else if (error.request) {
+            console.error('No response received from TMDB API');
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            console.error('Error during TMDB API request setup:', error.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 };
+
 const getSerieTrailer = async (req, res) => {
     try {
         const { serieId } = req.params;
@@ -270,8 +335,16 @@ const getSerieTrailer = async (req, res) => {
 
         res.json({ trailerUrl });
     } catch (error) {
-        console.error('Error getting trailer:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.response) {
+            console.error('TMDB API Error:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ error: error.response.data.status_message });
+        } else if (error.request) {
+            console.error('No response received from TMDB API');
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            console.error('Error during TMDB API request setup:', error.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 };
 
