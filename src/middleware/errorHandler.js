@@ -14,7 +14,7 @@
 const errorHandler = (err, _req, res, _next) => {
     console.error(err);
     return res.status(500).json({
-        message: process.env['NODE_ENV'] ?? 'development' === 'production' ?
+        message: process.env.NODE_ENV ?? 'development' === 'production' ?
             'unknown error' :
             `${err}`
     });
