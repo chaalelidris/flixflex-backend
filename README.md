@@ -131,7 +131,7 @@ You should copy `.env.sample` to `.env` and then:
 
 ## Deployment origin
 
-The FlixFlex Backend API is deployed and accessible at: [[https://flixflex-evyj.onrender.com/api/v1](https://flixflex.cyclic.app/api/v1)
+The FlixFlex Backend API is deployed and accessible at: [https://flixflex.cyclic.app/api/v1](https://flixflex.cyclic.app/api/v1)
 
 ## Swagger documentatin & test
 
