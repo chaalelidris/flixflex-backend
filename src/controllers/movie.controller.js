@@ -218,14 +218,14 @@ const getMovieTrailer = async (req, res) => {
         });
 
         // Find the first trailer key, assuming it's a YouTube video
-        const trailerKey = tmdbResponse.data && tmdbResponse.data.results.find(video => video.type === 'Trailer')?.key;
+        const trailer = tmdbResponse.data.results.find(video => video.type === 'Trailer');
 
-        if (!trailerKey) {
+        if (!trailer) {
             return res.status(404).json({ success: false, error: 'Trailer not found' });
         }
 
         // Construct the YouTube embed URL
-        const trailerUrl = `https://www.youtube.com/watch?v=${trailerKey}`;
+        const trailerUrl = `https://www.youtube.com/watch?v=${trailer.key}`;
 
         res.json({ success: true, data: trailerUrl });
     } catch (error) {

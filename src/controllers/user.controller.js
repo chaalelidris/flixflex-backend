@@ -25,7 +25,7 @@ const registerUser = async (req, res) => {
         const token = generateJwtToken(newUser); // Generate a JWT token
 
         // Respond with the token and user details
-        res.status(201).json({ success: true, token, user: { _id: newUser._id, username: newUser.username } });
+        res.status(201).json({ success: true, message: "Successful user registration", token, user: { _id: newUser._id, username: newUser.username } });
     } catch (error) {
         console.error('User registration error:', error.message);
         res.status(500).json({ success: false, error: 'Internal Server Error' });
@@ -47,7 +47,7 @@ const loginUser = (req, res) => {
 
         try {
             const token = generateJwtToken(user);
-            const responseData = { success: true, token, user: { _id: user._id, username: user.username } };
+            const responseData = { success: true, message: "Successful user login", token, user: { _id: user._id, username: user.username } };
             res.json(responseData);
         } catch (error) {
             console.error('User login error:', error);

@@ -8,7 +8,7 @@ const getRoot = (_req, res) => {
     res.status(200).json({
         name: "Flix flex",
         description: "Flix Flex Backend API",
-        version: "1.5.0"
+        version: "1.6.0"
     });
 }
 

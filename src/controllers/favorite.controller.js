@@ -50,10 +50,12 @@ const removeFromFavorites = async (req, res) => {
         const { favoriteId } = req.params;
 
         // Check if the favorite item exists
-        const existingFavorite = await Favorite.findOneAndDelete({ userId: user._id, _id: favoriteId });
+
+        const existingFavorite = await Favorite.findOneAndDelete({ _id: favoriteId, userId: user._id });
         if (!existingFavorite) {
             return res.status(404).json({ success: false, error: 'Favorite item not found' });
         }
+
 
         res.json({ success: true, message: 'Removed from favorites successfully' });
     } catch (error) {
