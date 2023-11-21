@@ -9,7 +9,7 @@ const getMovies = async (req, res) => {
         let pageNumber = Math.max(parseInt(page), 1);
         let startIndex = 0;
 
-        if (page && batch10 === "true") {
+        if (batch10 === "true") {
             startIndex = page % 2 === 0 ? 10 : 0;
             pageNumber = Math.ceil(pageNumber / 2);
         }
@@ -29,9 +29,9 @@ const getMovies = async (req, res) => {
         });
 
         let paginatedMovies;
-        if (page && batch10 && batch10 === "true") {
+        if (batch10 && batch10 === "true") {
             paginatedMovies = {
-                page,
+                page: page ?? 1,
                 results: response.data.results.slice(startIndex, startIndex + 10),
                 total_pages: response.data.total_pages * 2,
                 total_results: response.data.total_results
@@ -53,7 +53,7 @@ const getSeries = async (req, res) => {
         let pageNumber = Math.max(parseInt(page), 1);
         let startIndex = 0;
 
-        if (page && batch10 === "true") {
+        if (batch10 === "true") {
             startIndex = page % 2 === 0 ? 10 : 0;
             pageNumber = Math.ceil(pageNumber / 2);
         }
@@ -73,9 +73,9 @@ const getSeries = async (req, res) => {
         });
 
         let paginatedSeries;
-        if (page && batch10 && batch10 === "true") {
+        if (batch10 && batch10 === "true") {
             paginatedSeries = {
-                page,
+                page: page ?? 1,
                 results: response.data.results.slice(startIndex, startIndex + 10),
                 total_pages: response.data.total_pages * 2,
                 total_results: response.data.total_results
