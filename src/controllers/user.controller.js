@@ -4,7 +4,7 @@ import passport from 'passport';
 
 import User from '../models/user-model.js';
 import { matchedData } from 'express-validator';
-import { generateJwtToken } from '../services/authService.js';
+import { generateJwtToken } from '../utils/authUtils.js';
 
 const saltRounds = 10;
 
@@ -27,7 +27,7 @@ const registerUser = async (req, res) => {
         // Respond with the token and user details
         res.status(201).json({ success: true, message: "Successful user registration", token, user: { _id: newUser._id, username: newUser.username } });
     } catch (error) {
-        console.error('User registration error:', error.message);
+        console.error('User registration error:', error);
         res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { handleApiError } from '../utils/apiHelpers';
+import { handleApiError } from '../utils/apiUtils';
 
 
 const getMovies = async (req, res) => {

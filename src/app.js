@@ -31,7 +31,6 @@ app.use(passport.initialize());
 // Apply routes before error handling
 app.use('/api/v1', root)
 app.use('/api/v1/users', usersRoutes);
-
 app.use("/api/v1/flixflex", mooviesRoutes)
 
 
